@@ -1,9 +1,22 @@
-class Blog {
+import 'package:hive/hive.dart';
+part 'blog_model.g.dart';
+
+@HiveType(typeId: 0)
+class Blog extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String title;
+
+  @HiveField(2)
   final String imageUrl;
+
+  @HiveField(3)
   final String content;
-  final bool isFavorite;
+
+  @HiveField(4)
+  bool isFavorite;
 
   Blog({
     required this.id,

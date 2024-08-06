@@ -1,11 +1,16 @@
 import 'package:blog_explorer/bloc/blog_bloc.dart';
+import 'package:blog_explorer/models/blog_model.dart';
 import 'package:blog_explorer/repositories/blog_repository.dart';
 import 'package:blog_explorer/screens/blog_list_screen.dart';
 import 'package:blog_explorer/utils/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(BlogAdapter());
+  await Hive.openBox<Blog>('blogs');
   final ApiClient apiClient = ApiClient();
   final BlogRepository blogRepository = BlogRepository(apiClient: apiClient);
 
